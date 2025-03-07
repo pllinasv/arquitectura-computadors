@@ -3,10 +3,12 @@
 
 #define MAX_SIZE 100
 
-void printArray(int numbers[]){
-    for(int i=0; i<MAX_SIZE; i++){
-        printf("%d\n", numbers[i]);
+
+void printArray(int numbers[], int size){
+    for(int i=0; i<size; i++){
+        printf("%d, ", numbers[i]);
     }
+    printf("\n");
 }
 
 void swap(int *a, int *b){
@@ -38,10 +40,55 @@ void quickSort(int array[], int low, int high){
     }
 }
 
-void copyArray(int from[], int to[]){
-    for(int i=0; i<MAX_SIZE; i++){
+void copyArray(int from[], int to[], int size){
+    for(int i=0; i<size; i++){
         to[i]=from[i];
     }
+}
+
+int removeDupes(int array[], int size){
+    int j=1;
+    int temp[size];
+
+    for(int i=0; i<size; i++){
+        if(i==0){
+            temp[0]=array[0];
+        } else{
+            if(array[i]!=array[i-1]){
+                temp[j]=array[i];
+                j++;
+            }
+        }
+        
+    }
+    copyArray(temp, array, j);
+    return j;
+}
+
+int removePairs(int array[], int size){
+    int j=0;
+    int temp[size];
+    for(int i=0; i<size; i++){
+        if(!(array[i]%2==0)){
+            temp[j]=array[i];
+            j++;
+        }
+    }
+    copyArray(temp, array, size);
+    return j;
+}
+
+int onlyPairs(int array[], int size){
+    int j=0;
+    int temp[size];
+    for(int i=0; i<size; i++){
+        if(array[i]%2==0){
+            temp[j]=array[i];
+            j++;
+        }
+    }
+    copyArray(temp, array, size);
+    return j;
 }
 
 int main() {
@@ -66,12 +113,28 @@ int main() {
     fclose(values);
     
     int orderedArray[MAX_SIZE];
-
-    copyArray(numbers, orderedArray);
-
+    copyArray(numbers, orderedArray, MAX_SIZE);
     quickSort(orderedArray, 0, MAX_SIZE-1);
 
-    printArray(orderedArray);
+    int arrayWithoutDupes[MAX_SIZE];
+    copyArray(orderedArray, arrayWithoutDupes, MAX_SIZE);
+    int noDupesSize=removeDupes(arrayWithoutDupes, MAX_SIZE);
 
+    int arrayWithoutPairs[noDupesSize];
+    copyArray(arrayWithoutDupes, arrayWithoutPairs, noDupesSize);
+    int noPairSize=removePairs(arrayWithoutPairs, noDupesSize);
+
+    int arrayWithPairs[noDupesSize];
+    copyArray(arrayWithoutDupes, arrayWithPairs, noDupesSize);
+    int PairSize=onlyPairs(arrayWithPairs, noDupesSize);
+
+    printf("Given values:\n");
+    printArray(numbers, MAX_SIZE);
+    printf("Orderes Values:\n");
+    printArray(orderedArray, MAX_SIZE);
+    printf("Only ordered pair values:\n");
+    printArray(arrayWithPairs, PairSize);
+    printf("Only ordered impair values:\n");
+    printArray(arrayWithoutPairs, noPairSize);
     return 0;
 }
