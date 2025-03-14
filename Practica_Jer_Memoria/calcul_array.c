@@ -12,15 +12,22 @@ void printArray(int numbers[], int size){
     for(int i=0; i<size; i++){
         // Traça de l'accés de lectura a la variable i
         fprintf(fitxer_traca, "2 %p\n", &i);
-        
+        fprintf(fitxer_traca, "2 %p\n", &size);
         // Traça de l'accés de lectura a l'element de l'array
         fprintf(fitxer_traca, "2 %p\n", &numbers[i]);
         
+        
         if(i==size-1){
+            fprintf(fitxer_traca, "2 %p\n", &i);
+            fprintf(fitxer_traca, "2 %p\n", &size);
             printf("%d", numbers[i]);
+        
         } else{
+            fprintf(fitxer_traca, "2 %p\n", &i);
+            fprintf(fitxer_traca, "2 %p\n", &size);
             printf("%d, ", numbers[i]);
         }
+        fprintf(fitxer_traca, "3 %p\n", &i);
     }
     printf("\n");
 }
@@ -43,6 +50,8 @@ void swap(int *a, int *b){
     fprintf(fitxer_traca, "3 %p\n", a);
     
     *b = temp;
+
+    fprintf(fitxer_traca, "2 %p\n", temp);
     
     // Traça de l'accés d'escriptura a b
     fprintf(fitxer_traca, "3 %p\n", b);
@@ -79,10 +88,17 @@ int partition(int array[], int low, int high){
             
             // Traça de l'accés d'escriptura a i
             fprintf(fitxer_traca, "3 %p\n", &i);
-            
+            fprintf(fitxer_traca, "2 %p\n", &j);
+            fprintf(fitxer_traca, "3 %p\n", &array[i]);
+            fprintf(fitxer_traca, "2 %p\n", &array[j]);
             swap(&array[i], &array[j]);
         }
+        fprintf(fitxer_traca, "3 %p\n", &j);
     }
+    fprintf(fitxer_traca, "2 %p\n", &i);
+    fprintf(fitxer_traca, "2 %p\n", &high);
+    fprintf(fitxer_traca, "2 %p\n", &array[i]);
+    fprintf(fitxer_traca, "2 %p\n", &array[high]);
     swap(&array[i+1], &array[high]);
     return (i+1);
 }
@@ -96,7 +112,9 @@ void quickSort(int array[], int low, int high){
     
     if(low < high){
         int pi = partition(array, low, high);
-        
+        fprintf(fitxer_traca, "2 %p\n", &low);
+        fprintf(fitxer_traca, "2 %p\n", &high);
+        fprintf(fitxer_traca, "2 %p\n", &array);
         // Traça de l'accés d'escriptura a pi
         fprintf(fitxer_traca, "3 %p\n", &pi);
 
@@ -118,6 +136,7 @@ void copyArray(int from[], int to[], int size){
         
         // Traça de l'accés d'escriptura
         fprintf(fitxer_traca, "3 %p\n", &to[i]);
+        fprintf(fitxer_traca, "3 %p\n", &i);
     }
 }
 
@@ -146,12 +165,14 @@ int removeDupes(int array[], int size){
             fprintf(fitxer_traca, "3 %p\n", &temp[0]);
         } else {
             // Traça dels accessos de lectura
+            fprintf(fitxer_traca, "2 %p\n", &i);
             fprintf(fitxer_traca, "2 %p\n", &array[i]);
             fprintf(fitxer_traca, "2 %p\n", &array[i-1]);
             
             if(array[i] != array[i-1]){
                 // Traça dels accessos de lectura
                 fprintf(fitxer_traca, "2 %p\n", &j);
+                fprintf(fitxer_traca, "2 %p\n", &i);
                 fprintf(fitxer_traca, "2 %p\n", &array[i]);
                 
                 temp[j] = array[i];
@@ -165,6 +186,7 @@ int removeDupes(int array[], int size){
                 fprintf(fitxer_traca, "3 %p\n", &j);
             }
         }
+        fprintf(fitxer_traca, "3 %p\n", &i);
     }
     copyArray(temp, array, j);
     return j;
@@ -237,6 +259,7 @@ int onlyPairs(int array[], int size){
             // Traça de l'accés d'escriptura a j
             fprintf(fitxer_traca, "3 %p\n", &j);
         }
+        fprintf(fitxer_traca, "2 %p\n", &i);
     }
     copyArray(temp, array, size);
     return j;
