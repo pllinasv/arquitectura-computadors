@@ -8,7 +8,6 @@ FILE *fitxer_traca;
 
 void printArray(int numbers[], int size){
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", printArray);
     
     for(int i=0; i<size; i++){
         // Traça de l'accés de lectura a la variable i
@@ -28,7 +27,6 @@ void printArray(int numbers[], int size){
 
 void swap(int *a, int *b){
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", swap);
     
     // Traça dels accessos de lectura
     fprintf(fitxer_traca, "2 %p\n", a);
@@ -52,7 +50,6 @@ void swap(int *a, int *b){
 
 int partition(int array[], int low, int high){
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", partition);
     
     // Traça de l'accés de lectura
     fprintf(fitxer_traca, "2 %p\n", &array[high]);
@@ -92,7 +89,6 @@ int partition(int array[], int low, int high){
 
 void quickSort(int array[], int low, int high){
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", quickSort);
     
     // Traça dels accessos de lectura
     fprintf(fitxer_traca, "2 %p\n", &low);
@@ -111,7 +107,6 @@ void quickSort(int array[], int low, int high){
 
 void copyArray(int from[], int to[], int size){
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", copyArray);
     
     for(int i=0; i<size; i++){
         // Traça dels accessos de lectura
@@ -128,7 +123,6 @@ void copyArray(int from[], int to[], int size){
 
 int removeDupes(int array[], int size){
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", removeDupes);
     
     int j = 1;
     
@@ -178,7 +172,6 @@ int removeDupes(int array[], int size){
 
 int removePairs(int array[], int size){
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", removePairs);
     
     int j = 0;
     
@@ -215,7 +208,6 @@ int removePairs(int array[], int size){
 
 int onlyPairs(int array[], int size){
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", onlyPairs);
     
     int j = 0;
     
@@ -260,7 +252,6 @@ int main() {
     }
     
     // Traça de la captura d'instrucció
-    fprintf(fitxer_traca, "0 %p\n", main);
     
     FILE *values;
     char fileName[] = "valors.txt";
